@@ -1,1 +1,24 @@
-this is a test file
+├── data/                   # Epic 2: Raw and processed data
+│   ├── raw/                # Original, immutable data
+│   └── processed/          # Cleaned data ready for modeling
+├── docs/                   # Epic 1 & 7: Documentation & Literature Survey
+│   ├── problem_definition.md
+│   ├── literature_survey.pdf
+│   └── business_impact.md
+├── notebooks/              # Epic 3 & 4: Interactive Analysis
+│   ├── 01_eda_visual_analysis.ipynb
+│   └── 02_model_building_experiments.ipynb
+├── src/                    # Epic 4 & 5: Source Code
+│   ├── data_preprocessing.py
+│   ├── model_training.py
+│   └── hyperparameter_tuning.py
+├── models/                 # Epic 6: Saved Models
+│   └── best_fraud_model.pkl
+├── app/                    # Epic 6: Web Framework Integration
+│   ├── templates/          # HTML files (if using Flask/Django)
+│   ├── static/             # CSS/JS
+│   └── main.py             # Entry point for the web app
+├── tests/                  # Epic 5: Performance Testing scripts
+├── requirements.txt        # List of dependencies
+├── README.md               # Epic 7: Project Overview & Step-by-Step Guide
+└── .gitignore              # Files to ignore (like large datasets or pyc)
