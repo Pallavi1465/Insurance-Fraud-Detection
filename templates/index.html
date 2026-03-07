@@ -5,178 +5,242 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insurance Fraud Detection</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center font-sans">
+<body class="bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 min-h-screen flex items-center justify-center font-sans relative py-8">
 
-<div class="bg-white shadow-xl rounded-2xl p-10 w-full max-w-5xl">
+<!-- Animated Background Icons -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden">
+  <div class="absolute top-10 left-10 text-indigo-300 opacity-5 animate-pulse text-8xl">
+    <i class="fas fa-shield-alt"></i>
+  </div>
+  <div class="absolute top-1/3 right-20 text-blue-300 opacity-5 animate-bounce text-9xl" style="animation-duration: 4s;">
+    <i class="fas fa-check-circle"></i>
+  </div>
+  <div class="absolute bottom-20 left-1/4 text-indigo-300 opacity-5 animate-pulse text-8xl" style="animation-delay: 1s;">
+    <i class="fas fa-lock"></i>
+  </div>
+  <div class="absolute bottom-10 right-10 text-blue-300 opacity-5 animate-pulse text-9xl" style="animation-delay: 2s;">
+    <i class="fas fa-chart-pie"></i>
+  </div>
+  <div class="absolute top-2/3 right-1/4 text-indigo-300 opacity-5 animate-bounce text-8xl" style="animation-duration: 5s;">
+    <i class="fas fa-search"></i>
+  </div>
+</div>
 
-<h1 class="text-3xl font-bold text-gray-800 text-center mb-2">Insurance Fraud Detection</h1>
-<p class="text-gray-500 text-center mb-8">Enter key claim details. Advanced parameters are available if needed.</p>
+<!-- Main Container -->
+<div class="bg-white/95 backdrop-blur-sm shadow-2xl rounded-3xl p-8 md:p-12 w-full max-w-6xl mx-4 relative z-10 border border-white/20">
 
-<form action="/predict" method="POST" class="space-y-8">
+<!-- Header Section -->
+<div class="mb-10">
+  <div class="flex items-center justify-center mb-4">
+    <div class="bg-gradient-to-r from-indigo-600 to-blue-600 p-4 rounded-full">
+      <i class="fas fa-shield-alt text-white text-3xl"></i>
+    </div>
+  </div>
+  <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent text-center mb-2">Fraud Detection</h1>
+  <p class="text-gray-600 text-center text-lg">AI-Powered Insurance Claim Analysis System</p>
+  <p class="text-gray-500 text-center mt-2">Enter claim details for real-time fraud prediction</p>
+</div>
+
+<form action="/predict" method="POST" id="claim-form" class="space-y-8 pb-56">
 
 <!-- PRIMARY USER INPUTS (MOST IMPORTANT FEATURES) -->
+<div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-8 rounded-2xl border-2 border-indigo-100 shadow-lg">
+  <div class="flex items-center mb-6">
+    <div class="bg-indigo-600 p-3 rounded-lg mr-3">
+      <i class="fas fa-file-invoice text-white"></i>
+    </div>
+    <h2 class="text-2xl font-bold text-indigo-900">Basic Claim Details</h2>
+  </div>
 
-<div>
-<h2 class="text-xl font-semibold text-gray-700 mb-4">Basic Claim Details</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-birthday-cake text-indigo-600 mr-2"></i>Age</label>
+  <input type="number" name="age" placeholder="Enter age" class="input-modern" required>
+</div>
 
-<input type="number" name="age" placeholder="Age" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-calendar-alt text-indigo-600 mr-2"></i>Months as Customer</label>
+  <input type="number" name="months_as_customer" placeholder="Months" class="input-modern" required>
+</div>
 
-<input type="number" name="months_as_customer" placeholder="Months as Customer" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-dollar-sign text-indigo-600 mr-2"></i>Annual Premium</label>
+  <input type="number" name="policy_annual_premium" placeholder="Premium amount" class="input-modern" required>
+</div>
 
-<input type="number" name="policy_annual_premium" placeholder="Policy Annual Premium" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-money-bill-wave text-indigo-600 mr-2"></i>Claim Amount</label>
+  <input type="number" name="total_claim_amount" placeholder="Claim amount" class="input-modern" required>
+</div>
 
-<input type="number" name="total_claim_amount" placeholder="Total Claim Amount" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-car text-indigo-600 mr-2"></i>Vehicles Involved</label>
+  <input type="number" name="number_of_vehicles_involved" placeholder="Number of vehicles" class="input-modern" required>
+</div>
 
-<input type="number" name="number_of_vehicles_involved" placeholder="Number of Vehicles Involved" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-hospital-user text-indigo-600 mr-2"></i>Bodily Injuries</label>
+  <input type="number" name="bodily_injuries" placeholder="Number of injuries" class="input-modern" required>
+</div>
 
-<input type="number" name="bodily_injuries" placeholder="Bodily Injuries" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-eye text-indigo-600 mr-2"></i>Witnesses</label>
+  <input type="number" name="witnesses" placeholder="Number of witnesses" class="input-modern" required>
+</div>
 
-<input type="number" name="witnesses" placeholder="Witnesses" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-cogs text-indigo-600 mr-2"></i>Vehicle Year</label>
+  <input type="number" name="auto_year" placeholder="Manufacturing year" class="input-modern" required>
+</div>
 
-<input type="number" name="auto_year" placeholder="Vehicle Year" class="input" required>
-
-<input type="text" name="incident_severity" placeholder="Incident Severity (Minor/Major/Total Loss)" class="input" required>
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-exclamation-triangle text-indigo-600 mr-2"></i>Severity</label>
+  <input type="text" name="incident_severity" placeholder="Minor/Major/Total Loss" class="input-modern" required>
+</div>
 
 </div>
 </div>
-
 
 <!-- ADVANCED SETTINGS -->
-
 <div>
-
-<button type="button" onclick="toggleAdvanced()" class="text-indigo-600 font-semibold hover:underline">
-⚙ Advanced Settings
+<button type="button" onclick="toggleAdvanced()" class="flex items-center gap-2 text-indigo-600 font-bold hover:text-indigo-700 text-lg transition-colors">
+  <span id="toggle-icon" style="display: inline-block; transition: transform 0.3s;">⚙</span>
+  <span>Advanced Settings</span>
 </button>
 
-<div id="advanced" class="hidden mt-6">
+<div id="advanced" class="hidden mt-6 bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-2xl border-2 border-slate-200 shadow-lg animate-slideDown">
 
-<h2 class="text-xl font-semibold text-gray-700 mb-4">Advanced Policy & Incident Details</h2>
-
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-<div>
-<label class="text-sm text-gray-600">Policy State</label>
-<input type="text" name="policy_state" value="OH" class="input">
+<div class="flex items-center mb-6">
+  <div class="bg-blue-600 p-3 rounded-lg mr-3">
+    <i class="fas fa-sliders-h text-white"></i>
+  </div>
+  <h2 class="text-2xl font-bold text-slate-900">Advanced Policy & Incident Settings</h2>
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Policy Deductable</label>
-<input type="number" name="policy_deductable" value="500" class="input">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Policy State</label>
+  <input type="text" name="policy_state" value="OH" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Umbrella Limit</label>
-<input type="number" name="umbrella_limit" value="0" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-receipt text-blue-600 mr-2"></i>Policy Deductible</label>
+  <input type="number" name="policy_deductable" value="500" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Insured Sex</label>
-<input type="text" name="insured_sex" value="MALE" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-shield-alt text-blue-600 mr-2"></i>Umbrella Limit</label>
+  <input type="number" name="umbrella_limit" value="0" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Education Level</label>
-<input type="text" name="insured_education_level" value="Bachelors" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-user text-blue-600 mr-2"></i>Insured Sex</label>
+  <input type="text" name="insured_sex" value="MALE" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Occupation</label>
-<input type="text" name="insured_occupation" value="other" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-graduation-cap text-blue-600 mr-2"></i>Education Level</label>
+  <input type="text" name="insured_education_level" value="Bachelors" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Hobbies</label>
-<input type="text" name="insured_hobbies" value="reading" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-briefcase text-blue-600 mr-2"></i>Occupation</label>
+  <input type="text" name="insured_occupation" value="other" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Relationship</label>
-<input type="text" name="insured_relationship" value="own-child" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-gamepad text-blue-600 mr-2"></i>Hobbies</label>
+  <input type="text" name="insured_hobbies" value="reading" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Capital Gains</label>
-<input type="number" name="capital-gains" value="0" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-handshake text-blue-600 mr-2"></i>Relationship</label>
+  <input type="text" name="insured_relationship" value="own-child" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Capital Loss</label>
-<input type="number" name="capital-loss" value="0" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-arrow-up text-blue-600 mr-2"></i>Capital Gains</label>
+  <input type="number" name="capital-gains" value="0" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Incident Type</label>
-<input type="text" name="incident_type" value="Single Vehicle Collision" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-arrow-down text-blue-600 mr-2"></i>Capital Loss</label>
+  <input type="number" name="capital-loss" value="0" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Collision Type</label>
-<input type="text" name="collision_type" value="Front Collision" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-car-crash text-blue-600 mr-2"></i>Incident Type</label>
+  <input type="text" name="incident_type" value="Single Vehicle Collision" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Authorities Contacted</label>
-<input type="text" name="authorities_contacted" value="Police" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-truck text-blue-600 mr-2"></i>Collision Type</label>
+  <input type="text" name="collision_type" value="Front Collision" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Incident State</label>
-<input type="text" name="incident_state" value="NY" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-police-records text-blue-600 mr-2"></i>Authorities Contacted</label>
+  <input type="text" name="authorities_contacted" value="Police" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Incident City</label>
-<input type="text" name="incident_city" value="New York" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-location-dot text-blue-600 mr-2"></i>Incident State</label>
+  <input type="text" name="incident_state" value="NY" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Property Damage</label>
-<input type="text" name="property_damage" value="NO" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-city text-blue-600 mr-2"></i>Incident City</label>
+  <input type="text" name="incident_city" value="New York" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Police Report Available</label>
-<input type="text" name="police_report_available" value="YES" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-house-damaged text-blue-600 mr-2"></i>Property Damage</label>
+  <input type="text" name="property_damage" value="NO" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Injury Claim</label>
-<input type="number" name="injury_claim" value="0" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-file-pdf text-blue-600 mr-2"></i>Police Report Available</label>
+  <input type="text" name="police_report_available" value="YES" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Property Claim</label>
-<input type="number" name="property_claim" value="0" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-bandage text-blue-600 mr-2"></i>Injury Claim</label>
+  <input type="number" name="injury_claim" value="0" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Vehicle Claim</label>
-<input type="number" name="vehicle_claim" value="0" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-image text-blue-600 mr-2"></i>Property Claim</label>
+  <input type="number" name="property_claim" value="0" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Auto Make</label>
-<input type="text" name="auto_make" value="Toyota" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-car text-blue-600 mr-2"></i>Vehicle Claim</label>
+  <input type="number" name="vehicle_claim" value="0" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Auto Model</label>
-<input type="text" name="auto_model" value="Corolla" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-sitemap text-blue-600 mr-2"></i>Auto Make</label>
+  <input type="text" name="auto_make" value="Toyota" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Claim to Premium Ratio</label>
-<input type="number" step="any" name="claim_to_premium_ratio" value="1" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-tag text-blue-600 mr-2"></i>Auto Model</label>
+  <input type="text" name="auto_model" value="Corolla" class="input-modern">
 </div>
 
-<div>
-<label class="text-sm text-gray-600">Policy CSL Limit</label>
-<input type="text" name="policy_csl_limit" value="300000" class="input">
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-chart-line text-blue-600 mr-2"></i>Claim to Premium Ratio</label>
+  <input type="number" step="any" name="claim_to_premium_ratio" value="1" class="input-modern">
+</div>
+
+<div class="input-group">
+  <label class="label-text"><i class="fas fa-money-check text-blue-600 mr-2"></i>Policy CSL Limit</label>
+  <input type="text" name="policy_csl_limit" value="300000" class="input-modern">
 </div>
 
 </div>
@@ -184,63 +248,137 @@
 
 </div>
 
-
-<!-- SUBMIT BUTTON -->
-
-<div class="text-center">
-<button type="submit" class="bg-indigo-600 text-white px-10 py-3 rounded-lg hover:bg-indigo-700 transition">
-Predict Fraud
-</button>
-</div>
 
 </form>
 
-
-<!-- PREDICTION RESULT -->
-
-{% if prediction is not none %}
-
-<div class="mt-8 text-center">
-
-{% if prediction == 1 %}
-<p class="text-red-600 text-xl font-semibold">⚠ Fraudulent Claim Detected</p>
-{% endif %}
-
+<!-- SUBMIT BUTTONS - FIXED AT BOTTOM -->
+<div style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 800px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); z-index: 1000; display: flex; flex-direction: column; gap: 10px;">
+  <button type="submit" form="claim-form" style="background: #4f46e5; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <i class="fas fa-magic-wand-magic-wand"></i>
+    <span>Analyze Claim for Fraud</span>
+  </button>
+  <button type="submit" form="claim-form" style="background: #16a34a; color: white; padding: 14px 20px; border-radius: 8px; font-size: 15px; font-weight: bold; border: 2px solid white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <i class="fas fa-chart-line"></i>
+    <span>Get Fraud Analysis Results</span>
+    <i class="fas fa-arrow-right"></i>
+  </button>
 </div>
 
-{% endif %}
-
 </div>
-
 
 <style>
-.input{
-width:100%;
-border:1px solid #e5e7eb;
-border-radius:10px;
-padding:10px;
-outline:none;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
 }
 
-.input:focus{
-border-color:#6366f1;
-box-shadow:0 0 0 2px rgba(99,102,241,0.2);
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.input-modern {
+  width: 100%;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.input-modern:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  background-color: #f0f4ff;
+  transform: translateY(-2px);
+}
+
+.input-modern:hover {
+  border-color: #6366f1;
+}
+
+.input-modern::placeholder {
+  color: #a0aec0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.4s ease;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 </style>
 
-
 <script>
 function toggleAdvanced(){
-
-const section = document.getElementById("advanced");
-
-if(section.classList.contains("hidden")){
-section.classList.remove("hidden");
-}else{
-section.classList.add("hidden");
+  const section = document.getElementById("advanced");
+  const icon = document.getElementById("toggle-icon");
+  
+  if(section.classList.contains("hidden")){
+    section.classList.remove("hidden");
+    icon.style.transform = "rotate(180deg)";
+  } else {
+    section.classList.add("hidden");
+    icon.style.transform = "rotate(0deg)";
+  }
 }
 
-}
+document.querySelectorAll('.input-modern').forEach(input => {
+  input.addEventListener('focus', function() {
+    this.parentElement.style.transform = 'scale(1.02)';
+  });
+  
+  input.addEventListener('blur', function() {
+    this.parentElement.style.transform = 'scale(1)';
+  });
+});
+
+document.querySelector('form').addEventListener('submit', function(e) {
+  const requiredFields = this.querySelectorAll('[required]');
+  let isValid = true;
+  
+  requiredFields.forEach(field => {
+    if(!field.value.trim()) {
+      isValid = false;
+      field.style.borderColor = '#ef4444';
+    } else {
+      field.style.borderColor = '#e5e7eb';
+    }
+  });
+  
+  if(!isValid) {
+    e.preventDefault();
+    alert('Please fill in all required fields');
+  } else {
+    const submitButtons = document.querySelectorAll('button[type="submit"]');
+    submitButtons.forEach(button => {
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+      button.disabled = true;
+    });
+  }
+});
 </script>
 
 </body>
