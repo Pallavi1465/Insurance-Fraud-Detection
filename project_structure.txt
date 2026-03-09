@@ -1,25 +1,22 @@
-insurance-fraud-detection/
-│
+Insurance-Fraud-Detection-main/
+├── main.py
+├── requirements.txt
+├── test.txt
+├── Brainstorming and Ideation/
 ├── data/
+│   ├── insurance_claims.csv
 │   └── processed/
-│       ├── cleaned_insurance_data.csv
-│       └── insurance_claims.csv
-│
+│       └── cleaned_insurance_data.csv
 ├── model/
-│   └── best_model.pkl
-│
+├── Project Design Phase/
+├── Project planning phase/
+├── Requirement Analysis/
 ├── src/
 │   ├── data_preprocessing.py
 │   ├── model_training.py
-│   └── pipeline.py
-│
-├── templates/
-│   ├── index.html
-│   └── results.html
-│
-├── main.py
-├── requirements.txt
-├── README.md
-├── Demo_Link.md
-├── .gitignore
-└── test.txt
+│   ├── pipeline.py
+│   └── save_encoders.py
+└── templates/
+    ├── index.html
+    ├── index.html.bak
+    └── results.html
